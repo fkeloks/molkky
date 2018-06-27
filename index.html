@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="language" content="fr"/>
+    <meta name="author" content="Florian B">
+
+    <title>Molkky</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+    <main id="main" v-cloak>
+
+        <header class="header">
+            <h1 class="header-title">Molkky</h1>
+        </header>
+
+        <ul class="errors-list" v-if="errors.length">
+            <li v-for="error in errors">{{ error.message }}</li>
+        </ul>
+
+        <span class="flash-overlay" v-if="flash !== null"></span>
+        <div class="flash-popup" v-if="flash !== null">
+            <h4>{{ flash }}</h4>
+            <transition name="bounce">
+                <div class="scores-details" v-if="show.scores">
+                    <div class="score-detail" v-for="(score, player) in scores">
+                        {{ player }} :
+                        <br class="br-responsive">
+                        <span class="badge mr-5" :class="points === null ? 'separator' : ''" v-for="points in getPoints(score, false)">{{ points !== null ? points : '25' }}</span>
+                        <span class="badge float-right">Total : {{ getPoints(score, true) }}</span>
+                    </div>
+                </div>
+            </transition>
+            <button class="flash-button float-left" @click.prevent="showScores">
+                {{ show.scores ? 'Cacher les scores' : 'Voir les scores' }}
+            </button>
+            <button class="flash-button float-right" v-if="!show.end" @click.prevent="closePopup">Fermer</button>
+            <button class="flash-button float-right" v-if="show.end">Fin de la partie</button>
+        </div>
+
+        <transition name="bounce" mode="out-in">
+            <section class="section" v-if="players.length && !Object.keys(scores).length" key="players">
+                <h4 class="section-subtitle">Joueurs :</h4>
+                <ul class="players-list">
+                    <li v-for="playername in players">
+                        {{ playername }}
+                        <span class="player-icon" v-if="state === 'players'" @click.prevent="removePlayer(playername)">&times;</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="section" v-if="Object.keys(scores).length" key="scores">
+                <h4>Scores :</h4>
+                <ul class="scores-list">
+                    <li v-for="(score, player) in scores">
+                        {{ player }} : <span class="badge">{{ getScore(player) }} Points</span>
+                    </li>
+                </ul>
+            </section>
+        </transition>
+
+        <section class="section" v-if="state === 'players'">
+            <h3 class="section-title">Mise en place de la partie :</h3>
+            <h4 class="section-subtitle">Veuillez saisir le noms des joueurs (2 minimum).</h4>
+            <form action="" method="post" @submit.prevent="addPlayer">
+                <label for="playername">Nom du joueur :</label>
+                <input type="text" id="playername" class="playername-input" name="playername" placeholder="Ex: Arthur" autocomplete="off" v-model="playername">
+                <input type="submit" class="playername-button" value="Ajouter &#43;">
+            </form>
+            <br>
+            <button class="game-start-button" @click.prevent="startGame(true)">Commencer la partie</button>
+        </section>
+
+        <transition name="bounce">
+            <section class="section" v-if="state === 'game'">
+                <p class="float-left">Joueur : <span class="badge">{{ current.player.name }}</span></p>
+                <p class="float-right">Tour <span class="badge">#{{ current.tour }}</span></p>
+                <form action="" method="post" @submit.prevent="nextTour">
+                    <div class="pins-list">
+                        <div class="pin-item" v-for="pin in current.pins" @click.prevent="checkPin(pin.number, $event)">
+                            <span class="pin-number">{{ pin.number }}</span>
+                            <input type="checkbox" v-model="pin.checked">
+                        </div>
+                    </div>
+
+                    <p class="mt-20">Points : <span class="badge">{{ current.points }}</span></p>
+                    <input type="submit" class="pin-button" value="Valider &#10003;">
+                    <button class="pin-button-cancel" v-if="!Object.keys(scores).length" @click.prevent="startGame(false)">
+                        Retour &times;
+                    </button>
+                </form>
+            </section>
+        </transition>
+
+        <footer class="footer">
+            <p class="footer-text">Florian Bouché | 2018</p>
+        </footer>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
