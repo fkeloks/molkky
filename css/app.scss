@@ -19,6 +19,11 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+button, input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 [v-cloak] {
     display: none;
 }

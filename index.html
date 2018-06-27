@@ -9,6 +9,7 @@
 
     <title>Molkky</title>
 
+    <link rel="shortcut icon" type="image/png" href="img/logo.png"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
@@ -90,7 +91,7 @@
                     </div>
 
                     <p class="mt-20">Points : <span class="badge">{{ current.points }}</span></p>
-                    <input type="submit" class="pin-button" value="Valider &#10003;">
+                    <input type="submit" class="pin-button" value="Valider">
                     <button class="pin-button-cancel" v-if="!Object.keys(scores).length" @click.prevent="startGame(false)">
                         Retour &times;
                     </button>
