@@ -1,3 +1,5 @@
+import css from '../css/app.scss'
+
 var app = new Vue({
     el: '#main',
     data: {

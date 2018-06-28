@@ -1,0 +1,43 @@
+{
+  "name": "molkky",
+  "version": "1.0.0",
+  "description": "Une application pour jouer plus simplement au célèbre Molkky !",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.12.2",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-manifest-plugin": "^2.0.3"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev webpack",
+    "prod": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fkeloks/molkky.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "js",
+    "vuejs",
+    "molkky",
+    "florian"
+  ],
+  "author": "Florian B",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fkeloks/molkky/issues"
+  },
+  "homepage": "https://github.com/fkeloks/molkky#readme"
+}
