@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="language" content="fr"/>
     <meta name="author" content="Florian B">
@@ -43,6 +43,11 @@
             </button>
             <button class="flash-button float-right" v-if="!show.end" @click.prevent="closePopup">Fermer</button>
             <button class="flash-button float-right" v-if="show.end">Fin de la partie</button>
+            <transition name="bounce">
+                <div class="logo-app" v-if="!show.scores">
+                    <img src="img/logo.png" alt="Logo de l'application">
+                </div>
+            </transition>
         </div>
 
         <transition name="bounce" mode="out-in">
@@ -68,7 +73,9 @@
 
         <section class="section" v-if="state === 'players'">
             <h3 class="section-title">Mise en place de la partie :</h3>
-            <h4 class="section-subtitle">Veuillez saisir le noms des joueurs (2 minimum).</h4>
+            <h4 class="section-subtitle">
+                Veuillez saisir le noms des joueurs <br class="br-responsive"> (2 minimum).
+            </h4>
             <form action="" method="post" @submit.prevent="addPlayer">
                 <label for="playername">Nom du joueur :</label>
                 <input type="text" id="playername" class="playername-input" name="playername" placeholder="Ex: Arthur" autocomplete="off" v-model="playername">

@@ -39,7 +39,7 @@ button, input {
     box-shadow: 0 0 10rem rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     padding: 30px;
-    overflow: hidden;
+    overflow-x: hidden;
     color: #FFF;
     user-select: none;
     
@@ -284,6 +284,10 @@ button, input {
         padding-left: 20px;
     }
     
+    .logo-app {
+        display: none;
+    }
+    
     .footer {
         margin-top: 20px;
         
@@ -362,9 +366,29 @@ button, input {
 
 @media screen and (max-width: 760px) {
     #main {
-        .flash-popup .flash-button {
-            width: 100%;
-            float: none;
+        top: 2.5%;
+        left: 5%;
+        height: 95%;
+        width: 90%;
+        transform: none;
+        padding: 20px;
+        
+        .flash-popup {
+            top: 5%;
+            left: 10%;
+            width: 80%;
+            height: 90%;
+            transform: none;
+            
+            .scores-details {
+                overflow-y: scroll;
+                max-height: 55vh;
+            }
+            
+            .flash-button {
+                width: 100%;
+                float: none;
+            }
         }
         
         .section {
@@ -379,8 +403,19 @@ button, input {
         }
         
         .header {
-            height: 50px;
-            line-height: 50px;
+            height: 38px;
+            line-height: 38px;
+            
+            .header-title {
+                font-size: 22px;
+            }
+        }
+        
+        .logo-app {
+            display: block;
+            margin-top: 20px;
+            height: 64px;
+            text-align: center;
         }
         
         .br-responsive {
