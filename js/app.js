@@ -58,6 +58,28 @@ var app = new Vue({
                 this.state = 'players'
             }
         },
+        restartGame() {
+            this.state = 'players'
+            this.flash = null
+            this.players = []
+            this.playername = null
+            this.scores = {}
+            this.current = {
+                tour: 1,
+                player: {
+                    id: 0,
+                    name: null
+                },
+                pins: [],
+                points: 0
+            }
+            this.show = {
+                scores: false,
+                end: false
+            }
+
+            this.resetPins()
+        },
         nextTour() {
             let currentPlayerId = this.current.player.id
             let currentPlayerName = this.players[currentPlayerId]

@@ -42,7 +42,9 @@
                 {{ show.scores ? 'Cacher les scores' : 'Voir les scores' }}
             </button>
             <button class="flash-button float-right" v-if="!show.end" @click.prevent="closePopup">Fermer</button>
-            <button class="flash-button float-right" v-if="show.end">Fin de la partie</button>
+            <button class="flash-button float-right" v-if="show.end" @click.prevent="restartGame">
+                Recommencer la partie
+            </button>
             <transition name="bounce">
                 <div class="logo-app" v-if="!show.scores">
                     <img src="img/logo.png" alt="Logo de l'application">
