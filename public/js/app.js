@@ -1,3 +1,6 @@
+import Vue from 'vue'
+import Draggable from 'vuedraggable'
+
 import css from '../css/app.scss'
 
 var app = new Vue({
@@ -29,7 +32,6 @@ var app = new Vue({
             if (playername != null && playername.length >= 2) {
                 if (this.players.indexOf(playername) === -1) {
                     this.players.push(playername)
-                    this.players.sort()
                     this.playername = null
                 } else {
                     this.setFlash('error', 'Un joueur avec ce nom est déjà présent dans la partie.')
@@ -49,7 +51,6 @@ var app = new Vue({
             if (start) {
                 if (this.players.length >= 2) {
                     this.state = 'game'
-                    this.players.sort()
                     this.current.player.name = this.players[0]
                 } else {
                     this.setFlash('error', 'Le nombre de joueurs dois être de minimum 2.')
@@ -201,5 +202,8 @@ var app = new Vue({
     },
     mounted: function () {
         this.resetPins()
+    },
+    components: {
+        Draggable
     }
 })

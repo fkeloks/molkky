@@ -43,6 +43,12 @@ let configuration = {
         ]
     },
 
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
+
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name].css',

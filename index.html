@@ -56,10 +56,12 @@
             <section class="section" v-if="players.length && !Object.keys(scores).length" key="players">
                 <h4 class="section-subtitle">Joueurs :</h4>
                 <ul class="players-list">
-                    <li v-for="playername in players">
-                        {{ playername }}
-                        <span class="player-icon" v-if="state === 'players'" @click.prevent="removePlayer(playername)">&times;</span>
-                    </li>
+                    <draggable v-model="players" :options="{disabled: (state !== 'players')}">
+                        <li v-for="playername in players">
+                            {{ playername }}
+                            <span class="player-icon" v-if="state === 'players'" @click.prevent="removePlayer(playername)">&times;</span>
+                        </li>
+                    </draggable>
                 </ul>
             </section>
 
@@ -114,7 +116,6 @@
 
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="dist/app.js"></script>
 
 </body>
