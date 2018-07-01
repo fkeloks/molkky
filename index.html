@@ -86,7 +86,7 @@
                 <input type="submit" class="playername-button" value="Ajouter &#43;">
             </form>
             <br>
-            <button class="game-start-button" @click.prevent="startGame(true)">Commencer la partie</button>
+            <button class="game-start-button" @click.prevent="startGame()">Commencer la partie</button>
         </section>
 
         <transition name="bounce">
@@ -103,7 +103,7 @@
 
                     <p class="mt-20">Points : <span class="badge">{{ current.points }}</span></p>
                     <input type="submit" class="pin-button" value="Valider">
-                    <button class="pin-button-cancel" v-if="!Object.keys(scores).length" @click.prevent="startGame(false)">
+                    <button class="pin-button-cancel" @click.prevent="cancel(!Object.keys(scores).length)">
                         Retour &times;
                     </button>
                 </form>

@@ -48,16 +48,12 @@ var app = new Vue({
                 this.setFlash('error', 'Impossible de retirer un joueur si la partie est commencée.')
             }
         },
-        startGame(start = true) {
-            if (start) {
-                if (this.players.length >= 2) {
-                    this.state = 'game'
-                    this.current.player.name = this.players[0]
-                } else {
-                    this.setFlash('error', 'Le nombre de joueurs dois être de minimum 2.')
-                }
+        startGame() {
+            if (this.players.length >= 2) {
+                this.state = 'game'
+                this.current.player.name = this.players[0]
             } else {
-                this.state = 'players'
+                this.setFlash('error', 'Le nombre de joueurs dois être de minimum 2.')
             }
         },
         restartGame() {
@@ -113,6 +109,26 @@ var app = new Vue({
             this.current.player.id = currentPlayerId
             this.current.player.name = currentPlayerName
             this.resetPins()
+        },
+        cancel(game = true) {
+            if (game) {
+                this.state = 'players'
+            } else {
+                let currentPlayerId = (this.current.player.id !== 0) ? (this.current.player.id - 1) : (this.players.length - 1)
+                let currentPlayerName = this.players[currentPlayerId]
+
+                if (this.current.player.id === 0) {
+                    this.current.tour--
+                }
+
+                this.scores[currentPlayerName].pop()
+                this.resetPins()
+                this.current.points = 0
+                this.current.player = {
+                    id: currentPlayerId,
+                    name: currentPlayerName
+                }
+            }
         },
         getScore(playerName) {
             let playerScore = this.scores[playerName]
