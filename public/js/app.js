@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Draggable from 'vuedraggable'
-import Screenfull from 'screenfull'
 
 import css from '../css/app.scss'
 
@@ -206,10 +205,12 @@ var app = new Vue({
             this.flash = null
         },
         fullscreen() {
-            if (Screenfull.enabled) {
-                Screenfull.toggle();
+            let mainElement = document.getElementById('main')
+
+            if (mainElement.classList.contains('fullscreen')) {
+                mainElement.classList.remove('fullscreen')
             } else {
-                this.setFlash('error', 'Impossible d\'activer le mode plein écran.')
+                mainElement.classList.add('fullscreen')
             }
         }
     },

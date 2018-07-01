@@ -4,7 +4,6 @@
   "description": "Une application pour jouer plus simplement au célèbre Molkky !",
   "main": "index.js",
   "dependencies": {
-    "screenfull": "^3.3.2",
     "sortablejs": "^1.7.0",
     "vue": "^2.5.16",
     "vuedraggable": "^2.16.0"
