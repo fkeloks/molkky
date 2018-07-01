@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Draggable from 'vuedraggable'
+import Screenfull from 'screenfull'
 
 import css from '../css/app.scss'
 
@@ -188,6 +189,13 @@ var app = new Vue({
             this.show.end = false
             this.show.scores = false
             this.flash = null
+        },
+        fullscreen() {
+            if (Screenfull.enabled) {
+                Screenfull.toggle();
+            } else {
+                this.setFlash('error', 'Impossible d\'activer le mode plein écran.')
+            }
         }
     },
     watch: {
