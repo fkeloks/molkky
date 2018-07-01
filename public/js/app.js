@@ -63,7 +63,6 @@ var app = new Vue({
         restartGame() {
             this.state = 'players'
             this.flash = null
-            this.players = []
             this.playername = null
             this.scores = {}
             this.current = {
